@@ -1,0 +1,138 @@
+# Papers — order here is the display order on the site (newest/most-prominent first).
+#
+# Schema (see README.md at repo root for full details):
+#   title:    string, required
+#   authors:  list of strings, required ("Daniel Yue" is auto-highlighted)
+#   status:   "Working Paper" (default) or "Published"
+#   review:   optional string for R&R state, e.g. "Reject & Resubmit · PNAS"
+#   venue:    optional string for published venue, e.g. "AIES 2022"
+#   tldr:     1-2 sentence plain-English summary (HTML ok), required
+#   abstract: full abstract text (optional)
+#   links:    list of {label, href}; first entry becomes the title link
+#   media:    list of {label, href} — press coverage
+
+- title: "The Local Economic Effects of Data Center Entry"
+  authors: ["Daniel Yue", "Yiyang Zeng"]
+  status: "Working Paper"
+  tldr: >-
+    Data center activation raises local employment by 3.5%, wages by 5%, and
+    business formation by 4.7% — but these gains are concentrated in metros,
+    and in low-competition utility areas, electricity prices rise for
+    households.
+  links:
+    - { label: "SSRN", href: "https://papers.ssrn.com/abstract=6497238" }
+    - { label: "Summary", href: "https://www.linkedin.com/feed/update/urn:li:activity:7445909449321390080/" }
+  abstract: >-
+    The explosive growth of artificial intelligence has triggered an
+    unprecedented wave of data center investment, yet systematic evidence on
+    how these facilities affect local economies remains scarce. We study the
+    local economic effects of data center entry in the United States using
+    comprehensive facility-level data merged with county-level economic
+    outcomes. Employing a Callaway-Sant'Anna difference-in-differences
+    framework that accounts for staggered treatment timing, we find that data
+    center activation increases local employment by 3.5%, total wages by
+    5.0%, business establishments by 4.7%, and median household income by
+    1.9%, while reducing unemployment rates and stimulating building permit
+    activity. These effects are concentrated in metropolitan areas, where
+    agglomeration economies amplify multiplier effects, while non-metro
+    counties experience negligible gains.
+
+- title: "The Latent Role of Open Models in the AI Economy"
+  authors: ["Daniel Yue", "Frank Nagle"]
+  status: "Working Paper"
+  review: "Reject & Resubmit · PNAS"
+  tldr: >-
+    Closed LLMs capture ~80% of monthly tokens despite charging ~6× the price
+    of open alternatives that perform comparably. Moving demand to dominated
+    open models would save users an estimated $24.8B in 2025 alone.
+  links:
+    - { label: "SSRN", href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5767103" }
+  media:
+    - { label: "Financial Times", href: "https://www.ft.com/content/353adf48-a5d6-4ea0-b5d7-9a94b141213a" }
+    - { label: "MIT Sloan", href: "https://mitsloan.mit.edu/ideas-made-to-matter/ai-open-models-have-benefits-so-why-arent-they-more-widely-used" }
+    - { label: "ITPro", href: "https://www.itpro.com/software/open-source/open-source-ai-performance-cost-savings-proprietary-models-linux-foundation" }
+  abstract: >-
+    Leveraging data on model-level usage and prices from OpenRouter, we find
+    that closed models dominate, with on average 80% of monthly LLM tokens
+    using closed models despite much higher prices — on average 6x the price
+    of open models — and only modest performance advantages. Reallocating
+    demand from observably dominated closed models to superior open models
+    would reduce average prices by over 70% and generate an estimated $24.8
+    billion in additional consumer savings across 2025.
+
+- title: "Igniting Innovation: Evidence from PyTorch on Technology Control in Open Collaboration"
+  authors: ["Daniel Yue", "Frank Nagle"]
+  status: "Working Paper"
+  review: "Major Revision · Organization Science"
+  tldr: >-
+    When PyTorch's governance moved from Meta to a non-profit foundation in
+    2022, Meta's contributions dropped — but outside chip manufacturers
+    contributed much more. Ceding control resolved complementors' hold-up
+    concerns.
+  links:
+    - { label: "SSRN", href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4960578" }
+    - { label: "Slides", href: "https://docs.google.com/presentation/d/1s3eZP_t4ySFACvTnIdnGVSz76HauVYFs0ApQWDZqoO0/edit?usp=sharing" }
+  abstract: >-
+    This study looks at the impact of technology control on external
+    contributions in open collaboration by examining PyTorch's 2022 shift
+    from Meta to a non-profit foundation. Contributions from Meta decreased
+    while external companies — particularly chip-manufacturer complementors —
+    significantly increased their participation, consistent with the
+    governance change resolving complementors' hold-up concerns.
+
+- title: "I, Google: Estimating the Impact of Corporate Involvement on AI Research"
+  authors: ["Daniel Yue"]
+  status: "Working Paper"
+  review: "Major Revision · Management Science"
+  tldr: >-
+    Corporate involvement in AI research raises field-weighted citations by
+    up to +44%. Firms' resources (data, compute, talent) outweigh the costs
+    of their commercial steering — but authors' agendas do drift commercial.
+  links:
+    - { label: "SSRN", href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5033334" }
+  abstract: >-
+    Focusing on dual-affiliated artificial intelligence researchers at the
+    intersection of academia and industry, I find that corporate involvement
+    leads to up to a +44% increase in field-weighted citations. This effect
+    arises because the average benefit of a firm's scientific resources
+    exceeds the cost of that firm's scientific constraints, though corporate
+    involvement does alter the direction of research to align more with the
+    firm's commercial interests.
+
+- title: "Nailing Prediction: Experimental Evidence on the Impact of Tools in Predictive Model Development"
+  authors: ["Daniel Yue", "Paul Hamilton", "Iavor Bojinov"]
+  status: "Working Paper"
+  tldr: >-
+    In a field experiment on a data science contest, teams with free access
+    to ML libraries outperformed restricted teams by 30% in log-loss —
+    equivalent to a 10× larger training set. Tools aren't neutral; they
+    embody skill.
+  links:
+    - { label: "SSRN", href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4300501" }
+  abstract: >-
+    In a field experiment leveraging a predictive data science contest, we
+    restrict access to software libraries for machine learning models. Teams
+    with unrestricted access perform 30% better in log-loss error —
+    statistically and economically significant, equivalent to a 10-fold
+    increase in training data set size. Findings are consistent with a
+    'Tools-as-Skill' mechanism, where tools automate some general data
+    science skills but create a need for new tool-specific skills.
+
+- title: "How Open Source Machine Learning Software Shapes AI"
+  authors: ["Daniel Yue", "Max Langenkamp"]
+  status: "Published"
+  venue: "AIES 2022"
+  tldr: >-
+    Machine-learning open source returns an estimated $100 of global economic
+    value for every $1 invested — roughly $30B in a year. Open source is an
+    under-appreciated lever for steering AI's trajectory.
+  links:
+    - { label: "ACM", href: "https://dl.acm.org/doi/abs/10.1145/3514094.3534167" }
+  abstract: >-
+    Contrasting the costs of machine-learning open source software (MLOSS)
+    and its economic benefits via GitHub contributions data, we find that the
+    average dollar of MLOSS investment corresponds to at least $100 of global
+    economic value created, roughly $30B in a year. We argue open sourcing
+    creates value through standardization, experimentation, and community
+    formation, and that MLOSS is a neglected factor shaping AI as a
+    discipline.

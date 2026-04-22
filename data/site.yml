@@ -1,0 +1,38 @@
+# Site-level content: sidebar, hero, bio, footer.
+# Paper and course entries live in papers.yml and courses.yml.
+
+affiliation: >-
+  Assistant Professor in the
+  <a href="https://www.scheller.gatech.edu/academics-research/it-management/index.html">Information
+  Technology Management</a> area,
+  <a href="https://www.scheller.gatech.edu/index.html">Scheller College of
+  Business</a>, Georgia Tech.
+
+cv: "https://drive.google.com/file/d/1KrXQzPZAF43U93eOAlXjN9-QCGJwEfon/view?usp=drive_link"
+
+contact:
+  - k: Email
+    v: "[first].[last]@scheller.gatech.edu"
+  - k: CV
+    v: '<a href="https://drive.google.com/file/d/1KrXQzPZAF43U93eOAlXjN9-QCGJwEfon/view?usp=drive_link">Curriculum Vitae</a>'
+  - k: Scholar
+    v: '<a href="https://scholar.google.com/">Google Scholar</a>'
+  - k: SSRN
+    v: '<a href="https://papers.ssrn.com/">SSRN</a>'
+  - k: Office
+    v: "Scheller College<br/>Atlanta, GA"
+
+# Candidate hero lines. The front-end picks one via heroLineIdx in index.html.
+heroLines:
+  - "Why do firms <em>openly share</em> innovative knowledge without directly profiting from it?"
+  - "Why do firms give away the things they could most profitably sell—<em>code, papers, models, data</em>—and what happens when they do?"
+  - "An economist of <em>open disclosure</em>: when companies share what they could keep."
+  - "Studying the quiet economics of <em>openness</em>—in AI, in science, and in the firms that power both."
+  - "When is <em>giving knowledge away</em> a firm's best strategy—and what does that mean for the rest of us?"
+
+bio:
+  - "I study the economics of <em>open disclosure</em> — when and why firms share innovative knowledge without directly profiting from it. I primarily study the AI industry through empirical research on scientific publications and open source software."
+  - "Before Georgia Tech, I completed my PhD at <strong>Harvard Business School</strong>, my undergrad in <strong>Physics at Harvard College</strong>, and worked as a product manager of analytics software at <strong>Mastercard</strong>."
+
+# Shown in the footer. Auto-generated from today's date if left blank.
+updated: ""

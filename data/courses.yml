@@ -1,0 +1,37 @@
+# Courses taught. Schema:
+#   code:         string, e.g. "MGMT 4803/8803"
+#   title:        string
+#   level:        string, e.g. "Undergrad + Masters" / "PhD"
+#   semesters:    list of strings
+#   semesterNote: optional extra line (e.g. evaluation scores)
+#   desc:         short description
+#   topics:       list of topic tags
+#   links:        list of {label, href}
+
+- code: "MGMT 4803/8803"
+  title: "AI in Business"
+  level: "Undergrad + Masters"
+  semesters: ["Spring 2025", "Spring 2026"]
+  desc: >-
+    Principles for navigating AI's evolving landscape and unlocking its
+    potential in any organization. Students leave able to read AI technology
+    critically, evaluate business applications, and reason about industry
+    dynamics.
+  topics: ["Generative AI", "AI Applications", "AI Industry"]
+  links:
+    - { label: "Syllabus", href: "https://equal-rondeletia-eec.notion.site/Syllabus-16e0f068eb46805a815ad27f118c924b" }
+    - { label: "Course Site", href: "https://equal-rondeletia-eec.notion.site/" }
+
+- code: "MGMT 7609"
+  title: "Observational Studies in Information Systems"
+  level: "PhD"
+  semesters: ["Fall 2025"]
+  semesterNote: "5 students · Course 5.0/5.0 · Instructor 5.0/5.0"
+  desc: >-
+    A half-course on the often-invisible infrastructure of empirical
+    research: data collection, conceptualization, and validation. We cover
+    modern tools — web scraping, databases, data warehouses, LLMs, cloud
+    clusters — in service of the question: what can we now feasibly answer?
+  topics: ["Data Collection", "Validation", "LLM-Assisted Research"]
+  links:
+    - { label: "Syllabus", href: "https://equal-rondeletia-eec.notion.site/MGT-7609-Observational-Studies-in-Information-Systems-2460f068eb46804586c1f53e8e33908e" }

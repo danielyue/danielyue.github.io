@@ -1,0 +1,1465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Daniel Yue — Scheller College of Business, Georgia Tech</title>
+<meta name="description" content="Daniel Yue is an assistant professor in Information Technology Management at Georgia Tech's Scheller College of Business, studying open disclosure, open source AI, and the economics of corporate scientific research."/>
+
+<!-- ======================================================================
+     HOW TO UPDATE THIS SITE
+     ----------------------------------------------------------------------
+     Almost everything you'd want to change lives in the DATA object
+     a few screens below (search for "const DATA"). Edit strings there,
+     commit, and GitHub Pages will redeploy. Layout & styling live below
+     it and almost never need to be touched.
+     ======================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* palette — cleaner/whiter */
+    --paper:       #fdfcf8;
+    --paper-2:     #f6f2e6;
+    --rule:        #e6dfcc;
+    --ink:         #1a1611;
+    --ink-2:       #3a342a;
+    --mute:        #7a7062;
+    --accent:      #b04a2f;   /* terracotta — used sparingly */
+    --accent-soft: #c8b9a0;
+    --highlight:   #f5e6a8;   /* marginalia highlighter */
+
+    --serif: "Newsreader", "Source Serif Pro", Georgia, serif;
+    --mono:  "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+    --measure: 72ch;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{ background: var(--paper); }
+  body{
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 19px;
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* paper texture — extremely subtle grain via layered gradients */
+  body::before{
+    content:"";
+    position: fixed; inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(1200px 800px at 85% -10%, rgba(176, 74, 47, 0.04), transparent 60%),
+      radial-gradient(900px 600px at -10% 110%, rgba(30, 24, 16, 0.05), transparent 60%);
+    z-index: 0;
+  }
+
+  a{ color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent-soft); transition: border-color .15s, color .15s;}
+  a:hover{ color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ===== top rule: a little letterpress masthead ================= */
+  .masthead{
+    border-bottom: 1px solid var(--rule);
+    padding: 22px 40px 18px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:24px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    position: relative;
+    z-index: 2;
+  }
+  .masthead .left{ display:flex; gap:20px; align-items:baseline;}
+  .masthead .dot{ color: var(--accent); }
+  .masthead nav{ display:flex; gap:22px;}
+  .masthead nav a{ border-bottom: none; color: var(--ink-2);}
+  .masthead nav a:hover{ color: var(--accent);}
+  .masthead .issue{ color: var(--mute);}
+
+  /* ===== hero viz band ============================================ */
+  .hero-viz{
+    position: relative;
+    width: 100%;
+    height: clamp(110px, 14vw, 170px);
+    overflow: hidden;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+    cursor: crosshair;
+  }
+  .hero-viz canvas{
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    display: block;
+  }
+  @media (max-width: 760px){
+    .hero-viz{ height: clamp(90px, 18vw, 130px);}
+  }
+
+  /* ===== main layout =============================================== */
+  .page{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 64px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ----- sidebar (identity card) — lives in the right column ----- */
+  aside.who{
+    position: sticky;
+    top: 40px;
+    align-self: start;
+    grid-column: 2;
+    grid-row: 1;
+  }
+  main{ grid-column: 1; grid-row: 1; }
+  .portrait-frame{
+    width: 240px;
+    aspect-ratio: 1/1;
+    border: 1px solid var(--rule);
+    padding: 10px;
+    background: #fbf8ef;
+    position: relative;
+  }
+  .portrait-frame::after{
+    /* tiny corner tick-marks like a printer's register */
+    content:"";
+    position:absolute; inset:4px;
+    background:
+      linear-gradient(var(--mute),var(--mute)) left top/10px 1px no-repeat,
+      linear-gradient(var(--mute),var(--mute)) left top/1px 10px no-repeat,
+      linear-gradient(var(--mute),var(--mute)) right top/10px 1px no-repeat,
+      linear-gradient(var(--mute),var(--mute)) right top/1px 10px no-repeat,
+      linear-gradient(var(--mute),var(--mute)) left bottom/10px 1px no-repeat,
+      linear-gradient(var(--mute),var(--mute)) left bottom/1px 10px no-repeat,
+      linear-gradient(var(--mute),var(--mute)) right bottom/10px 1px no-repeat,
+      linear-gradient(var(--mute),var(--mute)) right bottom/1px 10px no-repeat;
+    pointer-events:none;
+    opacity:.5;
+  }
+  .portrait-frame img{ width:100%; height:100%; display:block; object-fit:cover;}
+
+  .name{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin: 28px 0 6px;
+  }
+  .name em{ font-style: italic; font-weight: 400;}
+  .title-line{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mute);
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+  .affil{
+    margin-top: 18px;
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 30ch;
+  }
+  .affil a{ border-bottom: 1px solid var(--rule);}
+
+  .contact{
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 6px 14px;
+    font-size: 14px;
+  }
+  .contact dt{
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mute);
+    padding-top: 3px;
+  }
+  .contact dd{ margin: 0; font-size: 14.5px;}
+  .contact dd a{ border-bottom: none;}
+  .contact dd a:hover{ border-bottom: 1px solid var(--accent);}
+
+  /* ----- main column ----- */
+  main{ min-width: 0; }
+
+  .lede{
+    font-family: var(--serif);
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: -0.012em;
+    max-width: 44ch;
+    color: var(--ink);
+    margin: 0 0 28px;
+    text-wrap: balance;
+  }
+  .lede em{ font-style: italic; color: var(--accent);}
+  .lede .lede-rule{
+    display: block;
+    width: 56px;
+    height: 2px;
+    background: var(--accent);
+    margin: 6px 0 22px;
+  }
+
+  .bio{
+    font-size: 18px;
+    line-height: 1.65;
+    max-width: var(--measure);
+    color: var(--ink-2);
+    margin: 0 0 14px;
+  }
+  .bio strong{ color: var(--ink); font-weight: 500;}
+
+  /* ===== section headings ========================================== */
+  h2.section{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 56px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ink);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  h2.section .count{
+    color: var(--mute);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+  }
+
+  /* ===== research papers as "field notes" ========================= */
+  .paper{
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    padding: 22px 0 24px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .paper:last-child{ border-bottom: none; }
+
+  .paper .marg{
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--mute);
+    letter-spacing: 0.04em;
+    padding-top: 6px;
+  }
+  .paper .marg .num{
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 6px;
+    letter-spacing: 0.08em;
+  }
+  .paper .marg .wp{
+    display: block;
+    margin-top: 8px;
+    color: var(--mute);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .paper .marg .review{
+    display: block;
+    margin-top: 2px;
+    color: var(--mute);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .paper .marg .venue{
+    display: inline-block;
+    margin-top: 4px;
+    padding: 3px 7px;
+    background: var(--accent);
+    color: var(--paper);
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .paper h3{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    margin: 0 0 4px;
+    max-width: 48ch;
+    text-wrap: balance;
+  }
+  .paper h3 a{ border-bottom: none;}
+  .paper h3 a:hover{ color: var(--accent);}
+
+  .paper .authors{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-2);
+    margin: 0 0 8px;
+  }
+  .paper .authors .me{ font-style: normal; font-weight: 500; color: var(--ink); border-bottom: 1px solid var(--accent);}
+
+  .paper .tldr{
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 58ch;
+    margin: 0 0 10px;
+  }
+
+  /* consolidated single-line actions row for papers */
+  .paper .actions{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .paper .actions .act{
+    color: var(--ink);
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    padding: 0 0 2px;
+    font: inherit;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+  }
+  .paper .actions .act:hover{ border-bottom-color: var(--accent); color: var(--accent);}
+  .paper .actions .act .arrow{ color: var(--accent); margin-right: 4px;}
+  .paper .actions .act-abstract[aria-expanded="true"] .arrow::before{ content: "−"; }
+  .paper .actions .act-abstract[aria-expanded="true"] .arrow{ font-size: 0;}
+  .paper .actions .act-abstract[aria-expanded="true"] .arrow::before{ font-size: 11px; color: var(--accent); margin-right: 4px; }
+  .paper .actions .act-label{
+    color: var(--mute);
+    font-size: 10.5px;
+    margin-left: 4px;
+  }
+  .paper .actions .act-press{
+    color: var(--ink-2);
+  }
+
+  .paper .abstract{
+    margin-top: 12px;
+    padding: 14px 18px;
+    background: var(--paper-2);
+    border-left: 2px solid var(--accent);
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 68ch;
+  }
+  .paper .abstract p{ margin: 0 0 10px; }
+  .paper .abstract p:last-child{ margin-bottom: 0; }
+
+  /* ===== teaching ================================================== */
+  .course{
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 28px;
+  }
+  .course:last-child{ border-bottom: none;}
+  .course .marg{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--mute);
+    letter-spacing: 0.04em;
+    padding-top: 6px;
+  }
+  .course .marg .code{
+    display:block;
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 12px;
+    margin-bottom: 4px;
+    letter-spacing: 0.08em;
+  }
+  .course .marg .level{
+    display:block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 10px;
+    color: var(--mute);
+  }
+  .course h3{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.25;
+    margin: 0 0 12px;
+    max-width: 34ch;
+  }
+  .course .desc{
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 58ch;
+    margin: 0 0 10px;
+  }
+  .course .topics{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0;
+  }
+  .course .topics span{
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    padding: 3px 9px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+  }
+  .course .semesters{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-top: 10px;
+  }
+  .course .semesters em{ color: var(--ink-2); font-style: normal;}
+  .course .links{
+    display: flex;
+    gap: 18px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .course .links a{ border-bottom: 1px solid var(--rule); padding-bottom: 2px;}
+  .course .links a:hover{ border-bottom-color: var(--accent);}
+  .course .links .arrow{ color: var(--accent);}
+
+  /* footer: last updated line, minimal */
+  .footer-line{
+    margin-top: 56px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  /* ===== mobile =================================================== */
+  @media (max-width: 900px){
+    .masthead{ padding: 16px 20px; flex-wrap: wrap; gap: 12px;}
+    .masthead nav{ gap: 14px;}
+    .page{
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 32px 20px 80px;
+    }
+    aside.who{ position: static; }
+    .portrait-frame{ width: 180px;}
+    .name{ font-size: 34px; }
+    .lede{ font-size: 24px; }
+    .paper, .course, .colophon{ grid-template-columns: 1fr; gap: 14px;}
+    .paper .marg, .course .marg, .colophon .marg{ padding-top: 0;}
+    .paper h3, .course h3{ font-size: 22px;}
+  }
+
+  /* print */
+  @media print{
+    body{ background: white; color: black;}
+    .masthead nav, .paper details{ display: none;}
+  }
+
+  /* ===== easter: subtle in-view reveal for papers ================= */
+  .paper, .course{ opacity: 0; transform: translateY(6px); transition: opacity .5s ease, transform .5s ease;}
+  .paper.in, .course.in{ opacity: 1; transform: none;}
+
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+     HERO VIZ — animated canvas band. Mode switched via Tweaks.
+===================================================================== -->
+<section class="hero-viz" id="hero-viz" aria-hidden="true">
+  <canvas id="hero-canvas"></canvas>
+</section>
+
+<div class="page">
+
+  <!-- =================================================================
+       SIDEBAR — identity card (sticks on desktop)
+  ================================================================= -->
+  <aside class="who">
+    <div class="portrait-frame">
+      <img src="portrait.png" alt="Illustrated portrait of Daniel Yue" />
+    </div>
+    <h1 class="name" id="name-display">Daniel&nbsp;Yue</h1>
+    <div class="title-line" id="title-line">Assistant Professor, Georgia Tech</div>
+    <p class="affil" id="affil-display"></p>
+
+    <dl class="contact" id="contact-list">
+      <!-- populated from DATA -->
+    </dl>
+  </aside>
+
+  <!-- =================================================================
+       MAIN COLUMN
+  ================================================================= -->
+  <main>
+
+    <!-- Lede + bio -->
+    <div class="lede" id="lede">
+      <span class="lede-rule" aria-hidden="true"></span>
+      <span class="lede-text" id="lede-text"></span>
+    </div>
+
+    <div id="bio-container"></div>
+
+    <!-- ========== RESEARCH ======================================== -->
+    <h2 class="section" id="research">
+      <span>Research</span>
+      <span class="count" id="paper-count"></span>
+    </h2>
+    <div id="papers"></div>
+
+    <!-- ========== TEACHING ======================================== -->
+    <h2 class="section" id="teaching">
+      <span>Teaching</span>
+      <span class="count" id="course-count"></span>
+    </h2>
+    <div id="courses"></div>
+
+    <!-- footer: last updated only -->
+    <div class="footer-line">
+      <span>Last updated <span id="updated-date">—</span></span>
+    </div>
+
+  </main>
+</div>
+
+<!-- =====================================================================
+     ===========================  CONTENT  ==============================
+     Edit below to update the site. Nothing else should need changing.
+===================================================================== -->
+<script>
+const DATA = {
+  // Identity shown in the sidebar
+  affiliation: `Assistant Professor in the <a href="https://www.scheller.gatech.edu/academics-research/it-management/index.html">Information Technology Management</a> area, <a href="https://www.scheller.gatech.edu/index.html">Scheller College of Business</a>, Georgia Tech.`,
+
+  cv: "https://drive.google.com/file/d/1KrXQzPZAF43U93eOAlXjN9-QCGJwEfon/view?usp=drive_link",
+
+  contact: [
+    { k: "Email",    v: `[first].[last]@scheller.gatech.edu` },
+    { k: "CV",       v: `<a href="https://drive.google.com/file/d/1KrXQzPZAF43U93eOAlXjN9-QCGJwEfon/view?usp=drive_link">Curriculum Vitae</a>` },
+    { k: "Scholar",  v: `<a href="https://scholar.google.com/">Google Scholar</a>` },
+    { k: "SSRN",     v: `<a href="https://papers.ssrn.com/">SSRN</a>` },
+    { k: "Office",   v: `Scheller College<br/>Atlanta, GA` },
+  ],
+
+  // Hero / lede line. First item is the default; others appear as options in Tweaks.
+  heroLines: [
+    `Why do firms <em>openly share</em> innovative knowledge without directly profiting from it?`,
+    `Why do firms give away the things they could most profitably sell—<em>code, papers, models, data</em>—and what happens when they do?`,
+    `An economist of <em>open disclosure</em>: when companies share what they could keep.`,
+    `Studying the quiet economics of <em>openness</em>—in AI, in science, and in the firms that power both.`,
+    `When is <em>giving knowledge away</em> a firm's best strategy—and what does that mean for the rest of us?`
+  ],
+
+  // Short framing bio rendered below the lede. Keep this complementary to the
+  // hero line — don't repeat the research question here.
+  bio: [
+    `I study the economics of <em>open disclosure</em> — when and why firms share innovative knowledge without directly profiting from it. I primarily study the AI industry through empirical research on scientific publications and open source software.`,
+    `Before Georgia Tech, I completed my PhD at <strong>Harvard Business School</strong>, my undergrad in <strong>Physics at Harvard College</strong>, and worked as a product manager of analytics software at <strong>Mastercard</strong>.`,
+  ],
+
+  // --- PAPERS -----------------------------------------------------------
+  // Order here is the order they appear.
+  // Required: title, authors, tldr. Optional: status, review, venue, abstract, links, media.
+  //
+  // Status model:
+  //   status: "Working Paper" (default) — renders plain gray "Working Paper"
+  //   status: "Published"                — renders plain gray "Published" + venue badge
+  //   review: "Reject & Resubmit · PNAS" / "Major Revision · Management Science" (optional gray text,
+  //           only meaningful when status is "Working Paper")
+  //   venue:  "AIES 2022" / "Management Science" (filled terracotta box;
+  //           only shown when status is "Published")
+  //
+  // Link labels: use the SOURCE name ("SSRN", "arXiv", "ACM"), not "Paper".
+  papers: [
+    {
+      title: "The Local Economic Effects of Data Center Entry",
+      authors: [ "Daniel Yue", "Yiyang Zeng" ],
+      status: "Working Paper",
+      tldr: `Data center activation raises local employment by 3.5%, wages by 5%, and business formation by 4.7% — but these gains are concentrated in metros, and in low-competition utility areas, electricity prices rise for households.`,
+      links: [
+        { label: "SSRN", href: "https://papers.ssrn.com/abstract=6497238" },
+        { label: "Summary",  href: "https://www.linkedin.com/feed/update/urn:li:activity:7445909449321390080/" },
+      ],
+      abstract: `The explosive growth of artificial intelligence has triggered an unprecedented wave of data center investment, yet systematic evidence on how these facilities affect local economies remains scarce. We study the local economic effects of data center entry in the United States using comprehensive facility-level data merged with county-level economic outcomes. Employing a Callaway-Sant'Anna difference-in-differences framework that accounts for staggered treatment timing, we find that data center activation increases local employment by 3.5%, total wages by 5.0%, business establishments by 4.7%, and median household income by 1.9%, while reducing unemployment rates and stimulating building permit activity. These effects are concentrated in metropolitan areas, where agglomeration economies amplify multiplier effects, while non-metro counties experience negligible gains. Big Tech facilities generate larger effects than third-party data centers, and counties with early first-entry timing experienced stronger effects than those with recent first-entry timing. We also find that counties receiving additional data centers within five years of first entry exhibit larger effects than counties with isolated entries, suggesting that data center clustering amplifies local economic benefits. Finally, we examine electricity price effects, finding that identification is complicated by utility service territories spanning multiple counties. In areas with cleaner identification (fewer shared utilities), we detect positive price effects, suggesting data center demand raises costs for local ratepayers.`,
+    },
+    {
+      title: "The Latent Role of Open Models in the AI Economy",
+      authors: [ "Daniel Yue", "Frank Nagle" ],
+      status: "Working Paper",
+      review: "Reject & Resubmit · PNAS",
+      tldr: `Closed LLMs capture ~80% of monthly tokens despite charging ~6× the price of open alternatives that perform comparably. Moving demand to dominated open models would save users an estimated $24.8B in 2025 alone.`,
+      links: [
+        { label: "SSRN", href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5767103" },
+      ],
+      media: [
+        { label: "Financial Times",  href: "https://www.ft.com/content/353adf48-a5d6-4ea0-b5d7-9a94b141213a" },
+        { label: "MIT Sloan",        href: "https://mitsloan.mit.edu/ideas-made-to-matter/ai-open-models-have-benefits-so-why-arent-they-more-widely-used" },
+        { label: "ITPro",            href: "https://www.itpro.com/software/open-source/open-source-ai-performance-cost-savings-proprietary-models-linux-foundation" },
+      ],
+      abstract: `The rapid diffusion of large language models (LLMs) is mediated by an emerging market for AI inference. However, its economic structure is poorly understood due to challenges in measuring LLM usage. While some fear AI will inevitably evolve into an oligopolistic structure with winner-take-most dynamics, others argue that the rapid emergence of capable open models will inevitably commoditize AI inference. Leveraging data on model-level usage and prices from OpenRouter — comprising just under 1% of the total market for LLM inference — we empirically uncover the latent role of open models relative to closed models. Closed models dominate, with on average 80% of monthly LLM tokens using closed models despite much higher prices — on average 6x the price of open models — and only modest performance advantages. Frontier open models typically reach performance parity with frontier closed models within months, suggesting relatively fast convergence. Nevertheless, users continue to select closed models even when open alternatives are cheaper and offer superior performance. This systematic underutilization is economically significant: reallocating demand from observably dominated closed models to superior open models would reduce average prices by over 70% and, when extrapolated to the total market, generate an estimated $24.8 billion in additional consumer savings across 2025. These results suggest that closed model dominance reflects powerful drivers beyond model capabilities and price — whether switching costs, brand loyalty, or information frictions — with the economic magnitude of these hidden factors proving far larger than previously recognized, reframing open models as a largely latent, but high-potential, source of value in the AI economy.`,
+    },
+    {
+      title: "Igniting Innovation: Evidence from PyTorch on Technology Control in Open Collaboration",
+      authors: [ "Daniel Yue", "Frank Nagle" ],
+      status: "Working Paper",
+      review: "Major Revision · Organization Science",
+      tldr: `When PyTorch's governance moved from Meta to a non-profit foundation in 2022, Meta's contributions dropped — but outside chip manufacturers contributed much more. Ceding control resolved complementors' hold-up concerns.`,
+      links: [
+        { label: "SSRN", href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4960578" },
+        { label: "Slides", href: "https://docs.google.com/presentation/d/1s3eZP_t4ySFACvTnIdnGVSz76HauVYFs0ApQWDZqoO0/edit?usp=sharing" },
+      ],
+      abstract: `Many companies offer free access to their technology to encourage outside add-on innovation, hoping to later profit by raising prices or harnessing the power of the crowd while continuing to steer the direction of innovation. They can achieve this balance by opening access to the technology (access rights) but still maintaining governing control over it (control rights). However, how this continued exertion of control influences other companies' choice to invest in furthering that technology is not well understood. This study looks at the impact of technology control on external contributions in open collaboration contexts by examining the case of PyTorch, a popular machine learning framework, which shifted its governance from a for-profit corporation (Meta) to a non-profit foundation in 2022. The results show that this shift led to a significant decrease in contributions from Meta but a notable increase from external companies. In particular, participation increased from complementors (Chip Manufacturers); by contrast, users (App Developers and Cloud Providers who rely on PyTorch as input) did not change their rate of participation. These findings are consistent with the notion that the governance change resolved complementors' hold-up concerns.`,
+    },
+    {
+      title: "I, Google: Estimating the Impact of Corporate Involvement on AI Research",
+      authors: [ "Daniel Yue" ],
+      status: "Working Paper",
+      review: "Major Revision · Management Science",
+      tldr: `Corporate involvement in AI research raises field-weighted citations by up to +44%. Firms' resources (data, compute, talent) outweigh the costs of their commercial steering — but authors' agendas do drift commercial.`,
+      links: [
+        { label: "SSRN", href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5033334" },
+      ],
+      abstract: `While corporate involvement in modern scientific research is an indisputable fact, the impact of corporate involvement on scientific quality is controversial. While corporate interests can constrain research agendas, directing focus toward applied, commercially relevant questions, firms also provide resources — funding, data, engineering talent, and technical challenges — that can catalyze breakthroughs. This paper empirically assesses the impact of corporate involvement on scientific research by focusing on dual-affiliated artificial intelligence researchers located at the intersection of academia and industry. After controlling for the researcher's quality and topic preferences, I find that corporate involvement leads to up to a +44% increase in field-weighted citations received by a paper. I document evidence that this effect arises because the average benefit of a firm's scientific resources exceeds the cost of that firm's scientific constraints. Specifically, I find that corporate involvement raises the likelihood of producing breakthrough work, with these effects amplified when firms have greater resources. However, corporate involvement also alters the direction of the dual-affiliate author's research to align more with the firm's commercial interests. This paper is one of the first large-scale studies in any scientific field to estimate a positive impact of corporate involvement on science or to detail the mechanism driving this impact.`,
+    },
+    {
+      title: "Nailing Prediction: Experimental Evidence on the Impact of Tools in Predictive Model Development",
+      authors: [ "Daniel Yue", "Paul Hamilton", "Iavor Bojinov" ],
+      status: "Working Paper",
+      tldr: `In a field experiment on a data science contest, teams with free access to ML libraries outperformed restricted teams by 30% in log-loss — equivalent to a 10× larger training set. Tools aren't neutral; they embody skill.`,
+      links: [
+        { label: "SSRN", href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4300501" },
+      ],
+      abstract: `Predictive model development is understudied despite its centrality in modern artificial intelligence and machine learning business applications. Although prior discussions highlight advances in methods (along the dimensions of data, computing power, and algorithms) as the primary driver of model quality, the tools that implement those methods have been neglected. In a field experiment leveraging a predictive data science contest, we study the impact of tools by restricting access to software libraries for machine learning models. By only allowing access to these libraries in our control group, we find that teams with unrestricted access perform 30% better in log-loss error — a statistically and economically significant amount, equivalent to a 10-fold increase in the training data set size. We further find that teams with high general data-science skills are less affected by the intervention. In contrast, teams with high tool-specific skills significantly benefit from access to modeling libraries. Our findings are consistent with a mechanism we call 'Tools-as-Skill,' where tools automate and abstract some general data science skills but, in doing so, create the need for new tool-specific skills.`,
+    },
+    {
+      title: "How Open Source Machine Learning Software Shapes AI",
+      authors: [ "Daniel Yue", "Max Langenkamp" ],
+      status: "Published",
+      venue: "AIES 2022",
+      tldr: `Machine-learning open source returns an estimated $100 of global economic value for every $1 invested — roughly $30B in a year. Open source is an under-appreciated lever for steering AI's trajectory.`,
+      links: [
+        { label: "ACM", href: "https://dl.acm.org/doi/abs/10.1145/3514094.3534167" },
+      ],
+      abstract: `If we want a future where AI serves a plurality of interests, then we should pay attention to the factors that drive its success. While others have studied the importance of data, hardware, and models in directing the trajectory of AI, we argue that open source software is a neglected factor shaping AI as a discipline. We start with the observation that almost all AI research and applications are built on machine learning open source software (MLOSS). This paper presents three contributions. First, it quantifies the outsized impact of MLOSS by using Github contributions data. By contrasting the costs of MLOSS and its economic benefits, we find that the average dollar of MLOSS investment corresponds to at least $100 of global economic value created, corresponding to $30B of economic value created this year. Second, we leverage interviews with AI researchers and developers to develop a causal model of the effect of open sourcing on economic value. We argue that open sourcing creates value through three primary mechanisms: standardization of MLOSS tools, increased experimentation in AI research, and creation of communities. Finally, we consider the incentives for developing MLOSS and the broader implications of these effects.`,
+    },
+  ],
+
+  // --- COURSES ----------------------------------------------------------
+  courses: [
+    {
+      code: "MGMT 4803/8803",
+      title: "AI in Business",
+      level: "Undergrad + Masters",
+      semesters: [ "Spring 2025", "Spring 2026" ],
+      desc: `Principles for navigating AI's evolving landscape and unlocking its potential in any organization. Students leave able to read AI technology critically, evaluate business applications, and reason about industry dynamics.`,
+      topics: [ "Generative AI", "AI Applications", "AI Industry" ],
+      links: [
+        { label: "Syllabus", href: "https://equal-rondeletia-eec.notion.site/Syllabus-16e0f068eb46805a815ad27f118c924b" },
+        { label: "Course Site", href: "https://equal-rondeletia-eec.notion.site/" },
+      ],
+    },
+    {
+      code: "MGMT 7609",
+      title: "Observational Studies in Information Systems",
+      level: "PhD",
+      semesters: [ "Fall 2025" ],
+      semesterNote: "5 students · Course 5.0/5.0 · Instructor 5.0/5.0",
+      desc: `A half-course on the often-invisible infrastructure of empirical research: data collection, conceptualization, and validation. We cover modern tools — web scraping, databases, data warehouses, LLMs, cloud clusters — in service of the question: what can we now feasibly answer?`,
+      topics: [ "Data Collection", "Validation", "LLM-Assisted Research" ],
+      links: [
+        { label: "Syllabus", href: "https://equal-rondeletia-eec.notion.site/MGT-7609-Observational-Studies-in-Information-Systems-2460f068eb46804586c1f53e8e33908e" },
+      ],
+    },
+  ],
+
+  updated: "April 2026",
+};
+
+/* ==================================================================
+   RENDERING — normally no need to touch below this line
+================================================================== */
+
+// lede text — module-scoped so applyTweaks() can call it safely
+function renderLede(idx){
+  const el = document.getElementById("lede-text");
+  if (!el) return;
+  const lines = (typeof DATA !== "undefined" && DATA.heroLines) ? DATA.heroLines : [];
+  const safeIdx = Math.max(0, Math.min(lines.length - 1, idx|0));
+  el.innerHTML = lines[safeIdx] || "";
+}
+
+// JSON loader: if a `content.json` file sits next to index.html, its
+// contents override the inline DATA above. Keys in content.json are
+// shallow-merged on top of DATA, so you can override just a few fields
+// (e.g. papers) without repeating everything. See README for the schema.
+(async function bootstrap(){
+  try{
+    const res = await fetch("content.json", { cache: "no-cache" });
+    if (res.ok){
+      const ext = await res.json();
+      Object.assign(DATA, ext);
+    }
+  }catch(e){ /* fine — fall back to inline DATA */ }
+  render();
+})();
+
+function render(){
+
+// affiliation + contact
+document.getElementById("affil-display").innerHTML = DATA.affiliation;
+const cvLink = document.getElementById("cv-link");
+if (cvLink) cvLink.href = DATA.cv;
+
+const contactList = document.getElementById("contact-list");
+DATA.contact.forEach(({k,v}) => {
+  const dt = document.createElement("dt"); dt.textContent = k;
+  const dd = document.createElement("dd"); dd.innerHTML = v;
+  contactList.append(dt, dd);
+});
+
+// bio paragraphs
+const bioC = document.getElementById("bio-container");
+DATA.bio.forEach(p => {
+  const el = document.createElement("p");
+  el.className = "bio";
+  el.innerHTML = p;
+  bioC.appendChild(el);
+});
+
+// lede text
+renderLede(0);
+
+// format author list: bold + underline Daniel Yue, use em dashes
+function fmtAuthors(authors){
+  return authors.map(a =>
+    a.toLowerCase() === "daniel yue"
+      ? `<span class="me">${a}</span>`
+      : a
+  ).join(", ");
+}
+
+// papers
+const papersEl = document.getElementById("papers");
+DATA.papers.forEach((p, i) => {
+  const num = String(i+1).padStart(2, "0");
+  // Schema:
+  //   status: "Working Paper" (default) | "Published"
+  //   review: "Reject & Resubmit · PNAS" | "Major Revision · …"  (optional gray text)
+  //   venue:  "AIES 2022" | "Management Science"   (shown as filled box when Published)
+  const isPub = /published/i.test(p.status || "");
+  let margBits = "";
+  if (isPub){
+    margBits += `<span class="wp">Published</span>`;
+    if (p.venue) margBits += `<span class="venue">${p.venue}</span>`;
+  } else {
+    margBits += `<span class="wp">Working Paper</span>`;
+    if (p.review) margBits += `<span class="review">${p.review}</span>`;
+  }
+  const article = document.createElement("article");
+  article.className = "paper";
+  article.innerHTML = `
+    <div class="marg">
+      <span class="num">№ ${num}</span>
+      ${margBits}
+    </div>
+    <div class="body">
+      <h3>${p.links && p.links[0] ? `<a href="${p.links[0].href}">${p.title}</a>` : p.title}</h3>
+      <p class="authors">${fmtAuthors(p.authors)}</p>
+      <p class="tldr">${p.tldr}</p>
+      <div class="actions">
+        ${p.abstract ? `<button class="act act-abstract" type="button" aria-expanded="false"><span class="arrow">+</span>Abstract</button>` : ""}
+        ${(p.links||[]).map(l => `<a class="act" href="${l.href}"><span class="arrow">→</span>${l.label}</a>`).join("")}
+        ${p.media && p.media.length ? `<span class="act-label">Press:</span>${p.media.map(m => `<a class="act act-press" href="${m.href}">${m.label}</a>`).join("")}` : ""}
+      </div>
+      ${p.abstract ? `<div class="abstract" hidden><p>${p.abstract.replace(/\n\n/g,"</p><p>")}</p></div>` : ""}
+    </div>
+  `;
+  papersEl.appendChild(article);
+});
+
+// wire abstract toggles (single-line actions row)
+papersEl.querySelectorAll(".act-abstract").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const abs = btn.closest(".body").querySelector(".abstract");
+    if (!abs) return;
+    const open = !abs.hidden ? false : true;
+    abs.hidden = !open;
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.querySelector(".arrow").textContent = open ? "−" : "+";
+  });
+});
+document.getElementById("paper-count").textContent =
+  `${DATA.papers.length} papers`;
+
+// courses
+const coursesEl = document.getElementById("courses");
+DATA.courses.forEach(c => {
+  const el = document.createElement("article");
+  el.className = "course";
+  el.innerHTML = `
+    <div class="marg">
+      <span class="code">${c.code}</span>
+      <span class="level">${c.level}</span>
+    </div>
+    <div>
+      <h3>${c.title}</h3>
+      <p class="desc">${c.desc}</p>
+      <div class="topics">${(c.topics||[]).map(t => `<span>${t}</span>`).join("")}</div>
+      <div class="semesters">
+        Taught: <em>${(c.semesters||[]).join(" · ")}</em>${c.semesterNote ? ` &nbsp;·&nbsp; ${c.semesterNote}` : ""}
+      </div>
+      <div class="links">
+        ${(c.links||[]).map(l => `<a href="${l.href}"><span class="arrow">→</span>${l.label}</a>`).join("")}
+      </div>
+    </div>
+  `;
+  coursesEl.appendChild(el);
+});
+document.getElementById("course-count").textContent =
+  `${DATA.courses.length} courses`;
+
+// (about section removed)
+
+// colophon date
+document.getElementById("updated-date").textContent = DATA.updated;
+
+// reveal on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      e.target.classList.add("in");
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll(".paper, .course").forEach(n => io.observe(n));
+
+// smooth-scroll for in-page nav (using window.scrollTo, not scrollIntoView)
+document.querySelectorAll('.masthead nav a[href^="#"]').forEach(a => {
+  a.addEventListener("click", (ev) => {
+    const id = a.getAttribute("href").slice(1);
+    const el = document.getElementById(id);
+    if (el){
+      ev.preventDefault();
+      const y = el.getBoundingClientRect().top + window.scrollY - 24;
+      window.scrollTo({ top: y, behavior: "smooth" });
+      history.replaceState(null, "", "#" + id);
+    }
+  });
+});
+
+  // re-apply tweaks after content loads
+  if (typeof applyTweaks === "function") applyTweaks();
+  if (typeof refreshPanel === "function") refreshPanel();
+} // end render()
+
+/* =====================================================================
+   TWEAKS — tiny in-design control panel.
+   - Sidebar side (left / right)
+   - Hero line chooser (cycles through DATA.heroLines)
+   - Accent color
+   Defaults live in the EDITMODE block below so the host can persist edits.
+===================================================================== */
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "sidebarSide": "right",
+  "heroLineIdx": 4,
+  "accent": "#b04a2f",
+  "viz": "constellation"
+}/*EDITMODE-END*/;
+
+const tweaks = { ...TWEAK_DEFAULTS };
+
+function applyTweaks(){
+  document.body.dataset.sidebar = tweaks.sidebarSide || "left";
+  document.documentElement.style.setProperty("--accent", tweaks.accent || "#b04a2f");
+  renderLede(tweaks.heroLineIdx || 0);
+  if (typeof setViz === "function") setViz(tweaks.viz || "constellation");
+}
+applyTweaks();
+
+/* --- Tweaks panel (hidden until host activates) ------------------- */
+const panel = document.createElement("div");
+panel.id = "tweaks-panel";
+panel.hidden = true;
+panel.innerHTML = `
+  <div class="tp-title">Tweaks</div>
+
+  <div class="tp-row">
+    <div class="tp-label">Sidebar side</div>
+    <div class="tp-seg" data-key="sidebarSide">
+      <button data-v="left">Left</button>
+      <button data-v="right">Right</button>
+    </div>
+  </div>
+
+  <div class="tp-row">
+    <div class="tp-label">Hero visual</div>
+    <div class="tp-seg tp-seg-viz" data-key="viz">
+      <button data-v="constellation">Constel.</button>
+      <button data-v="tidal">Tidal</button>
+      <button data-v="grid">Grid</button>
+    </div>
+  </div>
+
+  <div class="tp-row">
+    <div class="tp-label">Hero line <span class="tp-meta" id="tp-hero-idx"></span></div>
+    <div class="tp-hero-preview" id="tp-hero-preview"></div>
+    <div class="tp-btns">
+      <button id="tp-hero-prev">← Prev</button>
+      <button id="tp-hero-next">Next →</button>
+    </div>
+  </div>
+
+  <div class="tp-row">
+    <div class="tp-label">Accent</div>
+    <div class="tp-swatches" data-key="accent">
+      <button data-v="#b04a2f" style="background:#b04a2f" title="Terracotta"></button>
+      <button data-v="#7a5a2f" style="background:#7a5a2f" title="Bronze"></button>
+      <button data-v="#2f5d50" style="background:#2f5d50" title="Deep green"></button>
+      <button data-v="#3b4a7a" style="background:#3b4a7a" title="Ink blue"></button>
+      <button data-v="#8a2f4a" style="background:#8a2f4a" title="Oxblood"></button>
+    </div>
+  </div>
+`;
+document.body.appendChild(panel);
+
+const tpStyle = document.createElement("style");
+tpStyle.textContent = `
+  #tweaks-panel{
+    position: fixed;
+    right: 20px; bottom: 20px;
+    width: 320px;
+    background: #fbf8ef;
+    border: 1px solid var(--rule);
+    box-shadow: 0 20px 50px rgba(26,22,17,.18), 0 2px 8px rgba(26,22,17,.08);
+    padding: 16px 18px 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink);
+    z-index: 9999;
+  }
+  #tweaks-panel .tp-title{
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink); padding-bottom: 10px; margin-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  #tweaks-panel .tp-title::before{ content: "§ "; color: var(--accent);}
+  #tweaks-panel .tp-row{ margin-bottom: 14px;}
+  #tweaks-panel .tp-row:last-child{ margin-bottom: 0;}
+  #tweaks-panel .tp-label{
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--mute); margin-bottom: 6px;
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  #tweaks-panel .tp-meta{ color: var(--accent); font-size: 10px;}
+  #tweaks-panel .tp-seg{ display: flex; gap: 0; border: 1px solid var(--rule);}
+  #tweaks-panel .tp-seg button{
+    flex:1; padding: 7px 10px; border: none; background: transparent;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-2); cursor: pointer;
+  }
+  #tweaks-panel .tp-seg button + button{ border-left: 1px solid var(--rule);}
+  #tweaks-panel .tp-seg button.on{ background: var(--ink); color: var(--paper);}
+  #tweaks-panel .tp-btns{ display: flex; gap: 6px; margin-top: 6px;}
+  #tweaks-panel .tp-btns button{
+    flex:1; padding: 6px 8px; border: 1px solid var(--rule); background: var(--paper);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink); cursor: pointer;
+  }
+  #tweaks-panel .tp-btns button:hover{ background: var(--paper-2);}
+  #tweaks-panel .tp-hero-preview{
+    font-family: var(--serif); font-size: 13px; line-height: 1.35;
+    color: var(--ink); padding: 8px 10px; background: var(--paper);
+    border: 1px solid var(--rule); min-height: 40px;
+    font-style: normal; text-transform: none; letter-spacing: 0;
+  }
+  #tweaks-panel .tp-hero-preview em{ color: var(--accent); font-style: italic;}
+  #tweaks-panel .tp-swatches{ display: flex; gap: 6px;}
+  #tweaks-panel .tp-swatches button{
+    width: 26px; height: 26px; border: 1px solid var(--rule); cursor: pointer;
+    border-radius: 2px;
+  }
+  #tweaks-panel .tp-swatches button.on{ outline: 2px solid var(--ink); outline-offset: 2px;}
+
+  /* swap grid columns via body attribute */
+  body[data-sidebar="left"] .page{ grid-template-columns: 320px 1fr; }
+  body[data-sidebar="left"] aside.who{ grid-column: 1; }
+  body[data-sidebar="left"] main{ grid-column: 2; }
+
+  body[data-sidebar="right"] .page{ grid-template-columns: 1fr 320px; }
+  body[data-sidebar="right"] aside.who{ grid-column: 2; }
+  body[data-sidebar="right"] main{ grid-column: 1; }
+
+  @media (max-width: 900px){
+    body[data-sidebar="left"] .page,
+    body[data-sidebar="right"] .page{ grid-template-columns: 1fr;}
+    body[data-sidebar="left"] aside.who,
+    body[data-sidebar="right"] aside.who,
+    body[data-sidebar="left"] main,
+    body[data-sidebar="right"] main{ grid-column: 1;}
+    #tweaks-panel{ right: 10px; bottom: 10px; width: calc(100vw - 20px); max-width: 320px;}
+  }
+`;
+document.head.appendChild(tpStyle);
+
+function refreshPanel(){
+  panel.querySelectorAll('.tp-seg[data-key="sidebarSide"] button')
+    .forEach(b => b.classList.toggle("on", b.dataset.v === tweaks.sidebarSide));
+  panel.querySelectorAll('.tp-seg[data-key="viz"] button')
+    .forEach(b => b.classList.toggle("on", b.dataset.v === tweaks.viz));
+  panel.querySelectorAll('.tp-swatches[data-key="accent"] button')
+    .forEach(b => b.classList.toggle("on", b.dataset.v === tweaks.accent));
+  const lines = DATA.heroLines || [];
+  const idx = tweaks.heroLineIdx|0;
+  document.getElementById("tp-hero-idx").textContent = `${idx+1} / ${lines.length}`;
+  document.getElementById("tp-hero-preview").innerHTML = lines[idx] || "";
+}
+
+function set(key, val){
+  tweaks[key] = val;
+  applyTweaks();
+  refreshPanel();
+  try{
+    window.parent.postMessage({type: "__edit_mode_set_keys", edits: { [key]: val }}, "*");
+  }catch(e){}
+}
+
+panel.querySelectorAll('.tp-seg button').forEach(b => {
+  b.addEventListener("click", () => set(b.parentElement.dataset.key, b.dataset.v));
+});
+panel.querySelectorAll('.tp-swatches button').forEach(b => {
+  b.addEventListener("click", () => set(b.parentElement.dataset.key, b.dataset.v));
+});
+document.getElementById("tp-hero-prev").addEventListener("click", () => {
+  const n = DATA.heroLines.length;
+  set("heroLineIdx", ((tweaks.heroLineIdx|0) - 1 + n) % n);
+});
+document.getElementById("tp-hero-next").addEventListener("click", () => {
+  const n = DATA.heroLines.length;
+  set("heroLineIdx", ((tweaks.heroLineIdx|0) + 1) % n);
+});
+
+refreshPanel();
+
+// Host protocol — register listener BEFORE announcing availability.
+window.addEventListener("message", (ev) => {
+  const d = ev.data || {};
+  if (d.type === "__activate_edit_mode") panel.hidden = false;
+  if (d.type === "__deactivate_edit_mode") panel.hidden = true;
+});
+try{
+  window.parent.postMessage({type: "__edit_mode_available"}, "*");
+}catch(e){}
+
+/* =====================================================================
+   HERO VIZ — three animated modes on a single canvas.
+   - constellation: a drifting network of nodes with faint connections
+   - tidal:         streams of particles flowing across a horizontal line
+   - grid:          a field of tiny ticks that respond to the mouse and
+                    emit occasional pulses
+   Mouse interaction everywhere; pauses when tab is hidden or reduced-motion.
+===================================================================== */
+(function initHeroViz(){
+  const wrap = document.getElementById("hero-viz");
+  const canvas = document.getElementById("hero-canvas");
+  const label = document.getElementById("hv-label");
+  if (!wrap || !canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const dpr = () => Math.min(window.devicePixelRatio || 1, 2);
+
+  let W = 0, H = 0, mouse = { x: -999, y: -999, inside: false, clickedAt: 0 };
+  let rafId = 0, t0 = performance.now(), lastT = t0;
+  let mode = "constellation";
+  let state = null;
+
+  // --- accent resolution -------------------------------------------------
+  function accentRGB(alpha = 1){
+    const hex = (getComputedStyle(document.documentElement)
+      .getPropertyValue("--accent") || "#b04a2f").trim();
+    const m = hex.match(/^#([0-9a-f]{6})$/i);
+    if (!m) return `rgba(176,74,47,${alpha})`;
+    const n = parseInt(m[1], 16);
+    return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${alpha})`;
+  }
+  function inkRGB(alpha = 1){
+    return `rgba(26,22,17,${alpha})`;
+  }
+
+  // --- resize ------------------------------------------------------------
+  const ro = new ResizeObserver(() => resize());
+  ro.observe(wrap);
+  function resize(){
+    const r = wrap.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width  = Math.round(W * dpr());
+    canvas.height = Math.round(H * dpr());
+    canvas.style.width  = W + "px";
+    canvas.style.height = H + "px";
+    ctx.setTransform(dpr(), 0, 0, dpr(), 0, 0);
+    if (state && state.onResize) state.onResize();
+  }
+
+  // --- mouse -------------------------------------------------------------
+  wrap.addEventListener("mousemove", (e) => {
+    const r = wrap.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+    mouse.inside = true;
+  });
+  wrap.addEventListener("mouseleave", () => { mouse.inside = false; mouse.x = mouse.y = -999; });
+  wrap.addEventListener("click", () => { mouse.clickedAt = performance.now(); if (state?.onClick) state.onClick(); });
+
+  // =====================================================================
+  // MODE A — CONSTELLATION: drifting nodes + connecting lines
+  // =====================================================================
+  function makeConstellation(){
+    const N = Math.round(Math.min(70, Math.max(36, (W * H) / 6500)));
+    const nodes = Array.from({length: N}, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - .5) * 0.16,
+      vy: (Math.random() - .5) * 0.16,
+      r: 1.4 + Math.random() * 2.4,
+      phase: Math.random() * Math.PI * 2,
+    }));
+    const linkDist = Math.min(180, Math.max(120, Math.sqrt(W*H) / 7));
+    const linkDist2 = linkDist * linkDist;
+
+    return {
+      label: "Constellation · knowledge as a drifting graph",
+      onResize(){
+        // keep nodes in bounds
+        nodes.forEach(n => { n.x = Math.min(W - 2, Math.max(2, n.x)); n.y = Math.min(H - 2, Math.max(2, n.y)); });
+      },
+      step(dt){
+        const mx = mouse.x, my = mouse.y, inside = mouse.inside;
+        for (const n of nodes){
+          n.x += n.vx * dt * 0.06;
+          n.y += n.vy * dt * 0.06;
+          // bounce
+          if (n.x < 0) { n.x = 0; n.vx *= -1; }
+          if (n.x > W) { n.x = W; n.vx *= -1; }
+          if (n.y < 0) { n.y = 0; n.vy *= -1; }
+          if (n.y > H) { n.y = H; n.vy *= -1; }
+          // mouse repel
+          if (inside){
+            const dx = n.x - mx, dy = n.y - my;
+            const d2 = dx*dx + dy*dy;
+            if (d2 < 14400){
+              const d = Math.sqrt(d2) || 1;
+              const f = (1 - d/120) * 0.35;
+              n.vx += (dx/d) * f * dt * 0.01;
+              n.vy += (dy/d) * f * dt * 0.01;
+            }
+          }
+          // mild damping
+          n.vx *= 0.995; n.vy *= 0.995;
+          n.phase += dt * 0.002;
+        }
+      },
+      draw(){
+        // connections
+        for (let i = 0; i < nodes.length; i++){
+          const a = nodes[i];
+          for (let j = i+1; j < nodes.length; j++){
+            const b = nodes[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const d2 = dx*dx + dy*dy;
+            if (d2 < linkDist2){
+              const alpha = (1 - d2/linkDist2) * 0.28;
+              ctx.strokeStyle = inkRGB(alpha);
+              ctx.lineWidth = 0.7;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+        }
+        // nodes
+        for (const n of nodes){
+          const pulse = 0.7 + 0.3 * Math.sin(n.phase);
+          // accent halo occasionally
+          const accent = (n.r > 2.5);
+          ctx.fillStyle = accent ? accentRGB(0.85 * pulse) : inkRGB(0.75 * pulse);
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fill();
+          if (accent){
+            ctx.strokeStyle = accentRGB(0.18);
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r * 3.2, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+        }
+      },
+    };
+  }
+
+  // =====================================================================
+  // MODE B — TIDAL: particles flowing across a horizontal threshold
+  // =====================================================================
+  function makeTidal(){
+    const M = Math.round(Math.min(220, Math.max(90, W / 6)));
+    const particles = [];
+    function spawn(p){
+      p.x = -10 - Math.random() * 40;
+      p.y = H * (0.25 + Math.random() * 0.5);
+      p.vx = 0.4 + Math.random() * 0.8;
+      p.amp = 6 + Math.random() * 16;
+      p.freq = 0.008 + Math.random() * 0.012;
+      p.phase = Math.random() * Math.PI * 2;
+      p.size = 0.7 + Math.random() * 1.8;
+      p.life = 0;
+      p.color = Math.random() < 0.18 ? "accent" : "ink";
+    }
+    for (let i=0;i<M;i++){ const p = {}; spawn(p); p.x = Math.random()*W; particles.push(p); }
+
+    return {
+      label: "Tidal · the quiet flow of open knowledge",
+      onResize(){
+        for (const p of particles){
+          if (p.y > H) p.y = H * 0.5;
+        }
+      },
+      step(dt){
+        const mx = mouse.x, my = mouse.y, inside = mouse.inside;
+        for (const p of particles){
+          p.life += dt;
+          p.phase += p.freq * dt;
+          p.x += p.vx * dt * 0.08;
+          // vertical wave
+          const yBase = p.y + Math.sin(p.phase) * 0.3;
+          p._yDraw = yBase + Math.sin(p.phase * 2) * p.amp * 0.3;
+          // mouse nudge
+          if (inside){
+            const dx = p.x - mx, dy = p._yDraw - my;
+            const d2 = dx*dx + dy*dy;
+            if (d2 < 6400){
+              const d = Math.sqrt(d2) || 1;
+              p.vx += (dx/d) * 0.02 * dt * 0.01;
+              p.y  += (dy/d) * 0.4;
+            }
+          }
+          if (p.x > W + 20) spawn(p);
+        }
+      },
+      draw(){
+        // two faint threshold lines, one from each side
+        ctx.strokeStyle = inkRGB(0.08);
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, H * 0.5);
+        ctx.lineTo(W, H * 0.5);
+        ctx.stroke();
+
+        // particles as tiny streaks
+        for (const p of particles){
+          const y = p._yDraw ?? p.y;
+          const alpha = Math.min(1, p.life / 300) * 0.75;
+          ctx.strokeStyle = p.color === "accent" ? accentRGB(alpha) : inkRGB(alpha * 0.85);
+          ctx.lineWidth = p.size;
+          ctx.beginPath();
+          ctx.moveTo(p.x - p.vx * 8, y);
+          ctx.lineTo(p.x, y);
+          ctx.stroke();
+        }
+
+        // labels on the sides
+        ctx.fillStyle = inkRGB(0.35);
+        ctx.font = `500 10px "JetBrains Mono", monospace`;
+        ctx.textBaseline = "middle";
+        ctx.textAlign = "left";
+        ctx.fillText("ꜰɪʀᴍ", 16, H * 0.5);
+        ctx.textAlign = "right";
+        ctx.fillText("ᴘᴜʙʟɪᴄ", W - 16, H * 0.5);
+      },
+    };
+  }
+
+  // =====================================================================
+  // MODE C — GRID: field of ticks responsive to mouse, with periodic pulses
+  // =====================================================================
+  function makeGrid(){
+    const SP = 22;
+    let cols = 0, rows = 0, cells = [];
+    function build(){
+      cols = Math.max(4, Math.floor(W / SP));
+      rows = Math.max(4, Math.floor(H / SP));
+      cells = [];
+      const ox = (W - (cols-1)*SP) / 2;
+      const oy = (H - (rows-1)*SP) / 2;
+      for (let r=0;r<rows;r++) for (let c=0;c<cols;c++){
+        cells.push({ x: ox + c*SP, y: oy + r*SP, a: 0 });
+      }
+    }
+    build();
+    const pulses = [];
+    let pulseTimer = 0;
+
+    return {
+      label: "Grid · a field of signals, waiting to propagate",
+      onResize(){ build(); },
+      onClick(){
+        pulses.push({ x: mouse.x, y: mouse.y, r: 0, life: 0, strong: true });
+      },
+      step(dt){
+        pulseTimer -= dt;
+        if (pulseTimer <= 0){
+          pulseTimer = 2800 + Math.random() * 2600;
+          pulses.push({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            r: 0, life: 0, strong: false
+          });
+        }
+        for (const p of pulses){ p.life += dt; p.r += dt * 0.28; }
+        // drop expired
+        for (let i = pulses.length - 1; i >= 0; i--){
+          if (pulses[i].life > 2600) pulses.splice(i, 1);
+        }
+        // cells: base activation from mouse + pulses
+        for (const c of cells){
+          let a = 0;
+          if (mouse.inside){
+            const dx = c.x - mouse.x, dy = c.y - mouse.y;
+            const d2 = dx*dx + dy*dy;
+            if (d2 < 9000) a = Math.max(a, (1 - d2/9000) * 0.9);
+          }
+          for (const p of pulses){
+            const dx = c.x - p.x, dy = c.y - p.y;
+            const d = Math.sqrt(dx*dx + dy*dy);
+            const band = Math.abs(d - p.r);
+            if (band < 18){
+              const boost = (1 - band/18) * (p.strong ? 1 : 0.7) * Math.max(0, 1 - p.life/2200);
+              a = Math.max(a, boost);
+            }
+          }
+          // ease toward target
+          c.a += (a - c.a) * Math.min(1, dt * 0.012);
+        }
+      },
+      draw(){
+        for (const c of cells){
+          const a = c.a;
+          const size = 2 + a * 3.5;
+          const alpha = 0.14 + a * 0.75;
+          ctx.fillStyle = a > 0.55 ? accentRGB(alpha) : inkRGB(alpha);
+          // tick: short vertical line, gets longer when active
+          const h = 2 + a * 5;
+          ctx.fillRect(c.x - 0.5, c.y - h/2, 1, h);
+          if (a > 0.3){
+            ctx.beginPath();
+            ctx.arc(c.x, c.y, a * 1.6, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      },
+    };
+  }
+
+  // --- mode dispatch -----------------------------------------------------
+  function build(mode){
+    switch(mode){
+      case "tidal":  return makeTidal();
+      case "grid":   return makeGrid();
+      default:       return makeConstellation();
+    }
+  }
+
+  function setVizImpl(name){
+    if (name === mode && state) return;
+    mode = name;
+    state = build(name);
+    if (label) label.textContent = state.label;
+    resize();
+  }
+  // expose globally so applyTweaks can call it
+  window.setViz = setVizImpl;
+
+  // --- animation loop ----------------------------------------------------
+  function loop(t){
+    const dt = Math.min(64, t - lastT);
+    lastT = t;
+    if (!reduce) state.step(dt);
+    ctx.clearRect(0, 0, W, H);
+    state.draw();
+    rafId = requestAnimationFrame(loop);
+  }
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden){ cancelAnimationFrame(rafId); rafId = 0; }
+    else if (!rafId){ lastT = performance.now(); rafId = requestAnimationFrame(loop); }
+  });
+
+  // init
+  resize();
+  setVizImpl(tweaks?.viz || "constellation");
+  rafId = requestAnimationFrame(loop);
+})();
+</script>
+
+</body>
+</html>
