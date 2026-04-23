@@ -49,6 +49,7 @@
     - { label: "SSRN", href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5767103" }
   media:
     - { label: "Financial Times", href: "https://www.ft.com/content/353adf48-a5d6-4ea0-b5d7-9a94b141213a" }
+    - { label: "South China Morning Post", href: "https://www.scmp.com/tech/tech-trends/article/3350340/chinas-ai-firms-scaled-open-source-models-next-phase-may-be-different" }
     - { label: "MIT Sloan", href: "https://mitsloan.mit.edu/ideas-made-to-matter/ai-open-models-have-benefits-so-why-arent-they-more-widely-used" }
     - { label: "ITPro", href: "https://www.itpro.com/software/open-source/open-source-ai-performance-cost-savings-proprietary-models-linux-foundation" }
   abstract: >-
