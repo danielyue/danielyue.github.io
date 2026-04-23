@@ -2,10 +2,11 @@
   <!-- Terracotta square (the site's accent color) with a cream serif "Y" —
        echoes the filled venue badge used on published papers. -->
   <rect width="32" height="32" rx="5" fill="#b04a2f"/>
-  <text x="16" y="24"
+  <text x="16" y="23"
         text-anchor="middle"
         font-family="Georgia, 'Source Serif Pro', 'Newsreader', serif"
         font-weight="500"
-        font-size="24"
-        fill="#fdfcf8">Y</text>
+        font-size="19"
+        letter-spacing="-0.5"
+        fill="#fdfcf8">DY</text>
 </svg>
