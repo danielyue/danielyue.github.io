@@ -28,9 +28,9 @@
   semesters: ["Fall 2025"]
   semesterNote: "5 students · Course 5.0/5.0 · Instructor 5.0/5.0"
   desc: >-
-    A half-course on the often-invisible infrastructure of empirical
-    research: data collection, conceptualization, and validation. We cover
-    modern tools — web scraping, databases, data warehouses, LLMs, cloud
+    A course on the often-invisible infrastructure of empirical research:
+    data collection, conceptualization, and validation. We cover modern
+    tools — web scraping, databases, data warehouses, LLMs, cloud
     clusters — in service of the question: what can we now feasibly answer?
   topics: ["Data Collection", "Validation", "LLM-Assisted Research"]
   links:
