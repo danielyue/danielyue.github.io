@@ -16,11 +16,11 @@ contact:
   - k: CV
     v: '<a href="https://drive.google.com/file/d/1KrXQzPZAF43U93eOAlXjN9-QCGJwEfon/view?usp=drive_link">Curriculum Vitae</a>'
   - k: Scholar
-    v: '<a href="https://scholar.google.com/">Google Scholar</a>'
+    v: '<a href="https://scholar.google.com/citations?user=n1mL35QAAAAJ&hl=en">Google Scholar</a>'
   - k: SSRN
-    v: '<a href="https://papers.ssrn.com/">SSRN</a>'
+    v: '<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3656563">SSRN</a>'
   - k: Office
-    v: "Scheller College<br/>Atlanta, GA"
+    v: "4164"
 
 # Candidate hero lines. The front-end picks one via heroLineIdx in index.html.
 heroLines:
