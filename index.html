@@ -498,6 +498,10 @@
       gap: 40px;
       padding: 32px 20px 80px;
     }
+    /* Both aside and main have grid-row:1 at desktop so they sit side-by-side.
+       On mobile the grid is one column, so reset to auto and let the natural
+       DOM order (aside → main) stack them vertically with the sidebar on top. */
+    aside.who, main{ grid-row: auto; grid-column: 1; }
     aside.who{ position: static; }
     .portrait-frame{ width: 180px;}
     .name{ font-size: 34px; }
