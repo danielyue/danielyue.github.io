@@ -38,7 +38,7 @@
     counties experience negligible gains.
 
 - title: "The Latent Role of Open Models in the AI Economy"
-  authors: ["Daniel Yue", "Frank Nagle"]
+  authors: ["Frank Nagle", "Daniel Yue"]
   status: "Working Paper"
   review: "Reject & Resubmit · PNAS"
   tldr: >-
@@ -119,7 +119,7 @@
     science skills but create a need for new tool-specific skills.
 
 - title: "How Open Source Machine Learning Software Shapes AI"
-  authors: ["Daniel Yue", "Max Langenkamp"]
+  authors: ["Max Langenkamp", "Daniel Yue"]
   status: "Published"
   venue: "AIES 2022"
   tldr: >-
