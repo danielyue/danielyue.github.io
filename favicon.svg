@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Terracotta square (the site's accent color) with a cream serif "Y" —
+       echoes the filled venue badge used on published papers. -->
+  <rect width="32" height="32" rx="5" fill="#b04a2f"/>
+  <text x="16" y="24"
+        text-anchor="middle"
+        font-family="Georgia, 'Source Serif Pro', 'Newsreader', serif"
+        font-weight="500"
+        font-size="24"
+        fill="#fdfcf8">Y</text>
+</svg>

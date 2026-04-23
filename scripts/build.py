@@ -36,6 +36,7 @@ SITE_DIR = REPO_ROOT / "_site"
 STATIC_ASSETS = [
     "index.html",
     "portrait.png",
+    "favicon.svg",
     "uploads",
 ]
 
