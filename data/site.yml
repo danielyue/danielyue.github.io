@@ -42,4 +42,4 @@ updated: ""
 # When set to e.g. "danielyue", build.py injects the GoatCounter script tag
 # pointing at https://danielyue.goatcounter.com/count.
 analytics:
-  goatcounter_code: ""
+  goatcounter_code: "danielyue"
