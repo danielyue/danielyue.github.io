@@ -32,9 +32,11 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "data"
 SITE_DIR = REPO_ROOT / "_site"
 
+ANALYTICS_PLACEHOLDER = "<!-- analytics -->"
+
 # Static files + directories copied verbatim into _site/.
+# index.html is handled separately so analytics can be injected.
 STATIC_ASSETS = [
-    "index.html",
     "portrait.png",
     "favicon.svg",
     "uploads",
@@ -74,16 +76,35 @@ def copy_static(src: Path, dst: Path) -> None:
         shutil.copy2(src, dst)
 
 
+def analytics_snippet(site: dict) -> str:
+    code = (site.get("analytics") or {}).get("goatcounter_code") or ""
+    code = code.strip()
+    if not code:
+        return ""
+    return (
+        f'<script data-goatcounter="https://{code}.goatcounter.com/count" '
+        f'async src="//gc.zgo.at/count.js"></script>'
+    )
+
+
+def render_index(site: dict) -> str:
+    html = (REPO_ROOT / "index.html").read_text(encoding="utf-8")
+    return html.replace(ANALYTICS_PLACEHOLDER, analytics_snippet(site))
+
+
 def main() -> int:
     if SITE_DIR.exists():
         shutil.rmtree(SITE_DIR)
     SITE_DIR.mkdir()
 
+    site = load_yaml(DATA_DIR / "site.yml") or {}
     content = build_content()
     (SITE_DIR / "content.json").write_text(
         json.dumps(content, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
+
+    (SITE_DIR / "index.html").write_text(render_index(site), encoding="utf-8")
 
     for name in STATIC_ASSETS:
         src = REPO_ROOT / name
@@ -94,7 +115,9 @@ def main() -> int:
 
     n_papers = len(content["papers"])
     n_courses = len(content["courses"])
-    print(f"built _site/ — {n_papers} papers, {n_courses} courses")
+    gc = (site.get("analytics") or {}).get("goatcounter_code") or ""
+    gc_note = f", analytics=goatcounter[{gc}]" if gc else ", analytics=off"
+    print(f"built _site/ — {n_papers} papers, {n_courses} courses{gc_note}")
     return 0
 
 

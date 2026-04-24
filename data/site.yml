@@ -37,3 +37,9 @@ bio:
 
 # Shown in the footer. Auto-generated from today's date if left blank.
 updated: ""
+
+# Analytics. Leave goatcounter_code empty to disable analytics entirely.
+# When set to e.g. "danielyue", build.py injects the GoatCounter script tag
+# pointing at https://danielyue.goatcounter.com/count.
+analytics:
+  goatcounter_code: ""
