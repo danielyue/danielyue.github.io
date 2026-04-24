@@ -123,7 +123,75 @@
     gap: 64px;
     position: relative;
     z-index: 1;
+    transition: grid-template-columns 0.38s cubic-bezier(.2,.8,.2,1);
   }
+
+  /* ----- sidebar grip (drag to flip sides) ----- */
+  aside.who .grip{
+    position: absolute;
+    top: 4px;
+    width: 18px;
+    height: 28px;
+    display: grid;
+    grid-template-columns: 3px 3px;
+    grid-auto-rows: 3px;
+    column-gap: 4px;
+    row-gap: 4px;
+    align-content: center;
+    justify-content: center;
+    cursor: grab;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 3;
+    touch-action: none;
+  }
+  aside.who .grip i{
+    display: block;
+    width: 3px; height: 3px;
+    background: var(--ink);
+    border-radius: 50%;
+  }
+  aside.who:hover .grip{ opacity: 0.35; }
+  aside.who .grip:hover{ opacity: 0.75; }
+  aside.who .grip:active, aside.who .grip.active{ cursor: grabbing; opacity: 0.9; }
+  /* grip sits on the inside edge (toward the content column) */
+  body[data-sidebar="right"] aside.who .grip{ left: -22px; }
+  body[data-sidebar="left"]  aside.who .grip{ right: -22px; }
+
+  /* drag state */
+  body.is-dragging-sidebar{ cursor: grabbing; user-select: none; }
+  body.is-dragging-sidebar aside.who{ opacity: 0.35; transition: opacity 0.15s ease; }
+
+  /* drag ghost (clone of the sidebar that follows the cursor) */
+  .sidebar-ghost{
+    position: fixed;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.85;
+    box-shadow: 0 24px 48px -20px rgba(26,22,17,0.25), 0 2px 8px rgba(26,22,17,0.08);
+    background: var(--paper);
+    padding: 16px;
+    border: 1px solid var(--rule);
+    will-change: transform;
+    transition: opacity 0.25s ease;
+  }
+  .sidebar-ghost.releasing{
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1), opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  /* subtle highlight on the target drop half during drag */
+  .drop-hint{
+    position: fixed;
+    top: 0; bottom: 0;
+    width: 50%;
+    pointer-events: none;
+    background: linear-gradient(var(--dir, to left), rgba(176,74,47,0.06), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    z-index: 2;
+  }
+  .drop-hint.active{ opacity: 1; }
 
   /* ----- sidebar (identity card) — lives in the right column ----- */
   aside.who{
@@ -506,6 +574,8 @@
        DOM order (aside → main) stack them vertically with the sidebar on top. */
     aside.who, main{ grid-row: auto; grid-column: 1; }
     aside.who{ position: static; }
+    aside.who .grip{ display: none; }
+    .page{ transition: none; }
     .portrait-frame{ width: 180px;}
     .name{ font-size: 34px; }
     .lede{ font-size: 24px; }
@@ -541,6 +611,9 @@
        SIDEBAR — identity card (sticks on desktop)
   ================================================================= -->
   <aside class="who">
+    <div class="grip" role="button" tabindex="-1" aria-label="Drag to move this column to the other side" title="Drag to flip sides">
+      <i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
     <div class="portrait-frame">
       <img src="portrait.png" alt="Illustrated portrait of Daniel Yue" />
     </div>
@@ -1465,6 +1538,126 @@ try{
   resize();
   setVizImpl(tweaks?.viz || "constellation");
   rafId = requestAnimationFrame(loop);
+})();
+
+/* =====================================================================
+   SIDEBAR DRAG-TO-FLIP
+   Pick up the sidebar by its grip and drag it across the viewport
+   midline to swap which side it lives on. No persistence — a reload
+   returns to the YAML default. Disabled on small screens (sidebar
+   stacks vertically, nothing to swap).
+===================================================================== */
+(() => {
+  const MOBILE_BREAKPOINT = 900;
+  const aside = document.querySelector("aside.who");
+  const grip  = aside?.querySelector(".grip");
+  if (!grip) return;
+
+  let ghost = null;
+  let hint  = null;
+  let startX = 0, startY = 0;        // pointer position at drag start
+  let ghostX0 = 0, ghostY0 = 0;      // ghost top-left at drag start
+  let activePointer = null;
+
+  function onPointerDown(e){
+    if (window.innerWidth <= MOBILE_BREAKPOINT) return;
+    if (e.button !== undefined && e.button !== 0) return;
+    e.preventDefault();
+
+    const rect = aside.getBoundingClientRect();
+    ghost = aside.cloneNode(true);
+    ghost.classList.add("sidebar-ghost");
+    ghost.removeAttribute("class");
+    ghost.className = "sidebar-ghost";
+    // Strip ids from the clone so no duplicates end up in the DOM
+    ghost.querySelectorAll("[id]").forEach(el => el.removeAttribute("id"));
+    // Remove the grip from the ghost (no recursive drag affordance)
+    const ghostGrip = ghost.querySelector(".grip");
+    if (ghostGrip) ghostGrip.remove();
+    ghost.style.left   = rect.left + "px";
+    ghost.style.top    = rect.top  + "px";
+    ghost.style.width  = rect.width  + "px";
+    ghost.style.height = rect.height + "px";
+    ghost.style.transform = "translate(0,0)";
+    document.body.appendChild(ghost);
+
+    hint = document.createElement("div");
+    hint.className = "drop-hint";
+    document.body.appendChild(hint);
+
+    startX = e.clientX;
+    startY = e.clientY;
+    ghostX0 = rect.left;
+    ghostY0 = rect.top;
+    activePointer = e.pointerId;
+    grip.setPointerCapture(activePointer);
+    grip.classList.add("active");
+    document.body.classList.add("is-dragging-sidebar");
+  }
+
+  function onPointerMove(e){
+    if (!ghost || e.pointerId !== activePointer) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    ghost.style.transform = `translate(${dx}px, ${dy}px)`;
+
+    // Highlight the target half when the pointer crosses the midline
+    const mid = window.innerWidth / 2;
+    const currentSide = document.body.dataset.sidebar || "right";
+    const pointerOnOpposite =
+      (currentSide === "right" && e.clientX < mid) ||
+      (currentSide === "left"  && e.clientX > mid);
+    if (pointerOnOpposite){
+      hint.classList.add("active");
+      if (currentSide === "right"){
+        hint.style.left = "0";
+        hint.style.right = "auto";
+        hint.style.setProperty("--dir", "to right");
+      } else {
+        hint.style.right = "0";
+        hint.style.left  = "auto";
+        hint.style.setProperty("--dir", "to left");
+      }
+    } else {
+      hint.classList.remove("active");
+    }
+  }
+
+  function onPointerUp(e){
+    if (!ghost || e.pointerId !== activePointer) return;
+    const mid = window.innerWidth / 2;
+    const currentSide = document.body.dataset.sidebar || "right";
+    const flip =
+      (currentSide === "right" && e.clientX < mid) ||
+      (currentSide === "left"  && e.clientX > mid);
+
+    cleanupDrag(flip);
+  }
+
+  function cleanupDrag(flip){
+    if (!ghost) return;
+    grip.classList.remove("active");
+    document.body.classList.remove("is-dragging-sidebar");
+    if (flip){
+      document.body.dataset.sidebar =
+        document.body.dataset.sidebar === "right" ? "left" : "right";
+    }
+    // Let the ghost fade where it is; cleanup after the transition
+    const g = ghost, h = hint;
+    ghost = null; hint = null;
+    requestAnimationFrame(() => {
+      g.classList.add("releasing");
+      h.classList.remove("active");
+    });
+    setTimeout(() => { g.remove(); h.remove(); }, 320);
+    try { grip.releasePointerCapture(activePointer); } catch(_){}
+    activePointer = null;
+  }
+
+  grip.addEventListener("pointerdown", onPointerDown);
+  grip.addEventListener("pointermove", onPointerMove);
+  grip.addEventListener("pointerup",   onPointerUp);
+  grip.addEventListener("pointercancel", () => cleanupDrag(false));
 })();
 </script>
 
