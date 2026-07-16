@@ -21,7 +21,12 @@
     households.
   links:
     - { label: "SSRN", href: "https://papers.ssrn.com/abstract=6497238" }
+    - { label: "The Conversation", href: "https://theconversation.com/why-better-off-cities-and-towns-see-more-benefits-from-data-centers-than-rural-regions-286750" }
     - { label: "Summary", href: "https://www.linkedin.com/feed/update/urn:li:activity:7445909449321390080/" }
+  media:
+    - { label: "Fortune", href: "https://fortune.com/2026/07/14/data-centers-urban-rural-jobs-study/" }
+    - { label: "Yahoo Finance", href: "https://finance.yahoo.com/economy/policy/articles/economics-data-centers-creating-jobs-184943199.html" }
+    - { label: "Futurism", href: "https://futurism.com/future-society/data-center-economics-job-labor-construction-ai" }
   abstract: >-
     The explosive growth of artificial intelligence has triggered an
     unprecedented wave of data center investment, yet systematic evidence on
