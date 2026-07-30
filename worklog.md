@@ -1,5 +1,27 @@
 # Worklog
 
+## 2026-07-30 — KERA + New Lede coverage added to the data-center paper
+
+- Data-center paper card (`data/papers.yml`): added **The New Lede** to
+  `media:` —
+  <https://www.thenewlede.org/2026/07/kansas-ai-data-center-opposition/>
+  ("The Kansas community fighting data centers before they arrive", Jul 2026).
+  Interview 7/15; the piece quotes Daniel twice and links the SSRN paper
+  directly.
+- Data-center paper card (`data/papers.yml`): added `KERA News (NPR)` to
+  `media:` —
+  <https://www.keranews.org/news/2026-07-27/do-data-centers-benefit-economy>
+  ("Are data centers actually going to help the economy?", Miranda Suarez,
+  KERA/NTX Now, published 2026-07-27). Prerecorded interview taped 7/23; the
+  article is an edited Q&A with the audio segment embedded.
+- Follows the recorded convention: lower-tier pickups and repeat outlets go on
+  the paper card's `media:` list rather than the bio press sentence.
+- Open question for a later pass: The Conversation piece sits under `links:`
+  (correct — it is self-authored) so it does not render in the coverage row;
+  consider cross-listing it under `media:` as well.
+- Build verified locally (`uv run scripts/build.py`); coverage row now reads
+  Fortune · Yahoo Finance · Futurism · KERA News (NPR).
+
 ## 2026-07-16 — AIEI fellowship + data-center press coverage
 
 - Bio (`data/site.yml`): new paragraph "I am also a Senior Fellow of the

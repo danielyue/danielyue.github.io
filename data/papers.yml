@@ -27,6 +27,8 @@
     - { label: "Fortune", href: "https://fortune.com/2026/07/14/data-centers-urban-rural-jobs-study/" }
     - { label: "Yahoo Finance", href: "https://finance.yahoo.com/economy/policy/articles/economics-data-centers-creating-jobs-184943199.html" }
     - { label: "Futurism", href: "https://futurism.com/future-society/data-center-economics-job-labor-construction-ai" }
+    - { label: "KERA News (NPR)", href: "https://www.keranews.org/news/2026-07-27/do-data-centers-benefit-economy" }
+    - { label: "The New Lede", href: "https://www.thenewlede.org/2026/07/kansas-ai-data-center-opposition/" }
   abstract: >-
     The explosive growth of artificial intelligence has triggered an
     unprecedented wave of data center investment, yet systematic evidence on
