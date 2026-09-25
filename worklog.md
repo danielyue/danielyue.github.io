@@ -1,5 +1,18 @@
 # Worklog
 
+## 2026-09-25 -- GoatCounter analytics access notes
+
+- Analytics check only; no site changes. GoatCounter is live on the site
+  (`data/site.yml` `analytics.goatcounter_code: "danielyue"`); the dashboard
+  is <https://danielyue.goatcounter.com> and needs a login.
+- Account login email is `daniel.yue@scheller.gatech.edu` (signed up
+  2026-04-24; welcome email is in the GT Archive folder). The password is not
+  in 1Password, and the public visitor-counter setting is off, so the counter
+  JSON endpoints return 403.
+- Next step: recover the password (Chrome saved passwords, or "Forgot
+  password?"), save it to 1Password, and store a read-only API key in
+  `Agent Vault` so agents can pull stats without a browser login.
+
 ## 2026-07-30 — KERA + New Lede coverage added to the data-center paper
 
 - Data-center paper card (`data/papers.yml`): added **The New Lede** to
