@@ -1,5 +1,13 @@
 # Worklog
 
+## 2026-10-09 -- data-center press: CNN Business, NPR, AJC
+
+- Added CNN Business (9/28, quotes Daniel), NPR (9/22, quotes Daniel) and the
+  AJC (7/13, Conversation reprint) to the data-center paper's `media:` list,
+  at Daniel's request. Links checked (HTTP 200); build OK.
+- Not added: FOX45 Baltimore (9/24), which credits Daniel with a line Yiyang
+  said in the Sinclair taping.
+
 ## 2026-09-25 -- GoatCounter analytics access notes
 
 - Analytics check only; no site changes. GoatCounter is live on the site

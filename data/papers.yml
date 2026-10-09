@@ -24,7 +24,10 @@
     - { label: "The Conversation", href: "https://theconversation.com/why-better-off-cities-and-towns-see-more-benefits-from-data-centers-than-rural-regions-286750" }
     - { label: "Summary", href: "https://www.linkedin.com/feed/update/urn:li:activity:7445909449321390080/" }
   media:
+    - { label: "CNN Business", href: "https://www.cnn.com/2026/09/28/economy/ai-economy-inflation" }
+    - { label: "NPR", href: "https://www.npr.org/2026/09/22/nx-s1-5945009/data-centers-are-a-flashpoint-in-the-u-s-but-what-happens-when-one-comes-to-town" }
     - { label: "Fortune", href: "https://fortune.com/2026/07/14/data-centers-urban-rural-jobs-study/" }
+    - { label: "Atlanta Journal-Constitution", href: "https://www.ajc.com/opinion/2026/07/data-centers-benefit-better-off-cities-and-towns-more-than-rural-areas/" }
     - { label: "Yahoo Finance", href: "https://finance.yahoo.com/economy/policy/articles/economics-data-centers-creating-jobs-184943199.html" }
     - { label: "Futurism", href: "https://futurism.com/future-society/data-center-economics-job-labor-construction-ai" }
     - { label: "KERA News (NPR)", href: "https://www.keranews.org/news/2026-07-27/do-data-centers-benefit-economy" }
