@@ -52,6 +52,8 @@ def build_content() -> dict:
     site = load_yaml(DATA_DIR / "site.yml") or {}
     papers = load_yaml(DATA_DIR / "papers.yml") or []
     courses = load_yaml(DATA_DIR / "courses.yml") or []
+    news_path = DATA_DIR / "news.yml"
+    news = (load_yaml(news_path) or []) if news_path.exists() else []
 
     return {
         "_comment": (
@@ -65,6 +67,7 @@ def build_content() -> dict:
         "bio": site["bio"],
         "papers": papers,
         "courses": courses,
+        "news": news,
         "updated": site.get("updated") or dt.date.today().strftime("%B %Y"),
     }
 

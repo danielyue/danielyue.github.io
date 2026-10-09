@@ -464,6 +464,32 @@
   .paper .abstract p{ margin: 0 0 10px; }
   .paper .abstract p:last-child{ margin-bottom: 0; }
 
+  /* ===== news ====================================================== */
+  .news{ list-style: none; margin: 0; padding: 0; }
+  .news li{
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 28px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-2);
+  }
+  .news li:last-child{ border-bottom: none; }
+  .news .date{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mute);
+    padding-top: 4px;
+  }
+  .news a.more{ white-space: nowrap; margin-left: 6px; }
+  @media (max-width: 640px){
+    .news li{ grid-template-columns: 1fr; gap: 2px; }
+  }
+
   /* ===== teaching ================================================== */
   .course{
     padding: 28px 0;
@@ -652,6 +678,12 @@
       <span class="count" id="course-count"></span>
     </h2>
     <div id="courses"></div>
+
+    <!-- ========== NEWS ============================================ -->
+    <h2 class="section" id="news" hidden>
+      <span>News</span>
+    </h2>
+    <ul class="news" id="news-list" hidden></ul>
 
     <!-- footer: last updated only -->
     <div class="footer-line">
@@ -956,6 +988,21 @@ DATA.courses.forEach(c => {
 });
 document.getElementById("course-count").textContent =
   `${DATA.courses.length} courses`;
+
+// news (newest first, as listed in data/news.yml)
+const newsItems = DATA.news || [];
+if (newsItems.length){
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const fmtDate = d => { const [y, m] = String(d).split("-"); return m ? `${MONTHS[+m - 1]} ${y}` : y; };
+  const newsEl = document.getElementById("news-list");
+  newsItems.forEach(n => {
+    const li = document.createElement("li");
+    li.innerHTML = `<span class="date">${fmtDate(n.date)}</span><span>${n.text}${n.link ? ` <a class="more" href="${n.link}">→ ${n.label || "Read"}</a>` : ""}</span>`;
+    newsEl.appendChild(li);
+  });
+  newsEl.hidden = false;
+  document.getElementById("news").hidden = false;
+}
 
 // (about section removed)
 

@@ -1,0 +1,47 @@
+# News — newest first. Personal updates and media coverage share one list.
+#
+# Schema:
+#   date:  "YYYY-MM" (shown as "Mon YYYY"; required)
+#   text:  one sentence (HTML ok; required)
+#   link:  optional URL; rendered as a "→ Link" after the text
+#   label: optional link text (defaults to "Read")
+
+- date: "2026-09"
+  text: 'Commented on the AI boom and inflation in <em>CNN Business</em>, "Why the AI boom makes inflation harder to tame."'
+  link: "https://www.cnn.com/2026/09/28/economy/ai-economy-inflation"
+
+- date: "2026-09"
+  text: 'Data-center research featured on NPR''s <em>Morning Edition</em>, "Data centers are a flashpoint in the U.S. But what happens when one comes to town?"'
+  link: "https://www.npr.org/2026/09/22/nx-s1-5945009/data-centers-are-a-flashpoint-in-the-u-s-but-what-happens-when-one-comes-to-town"
+
+- date: "2026-08"
+  text: 'Open-models research cited in the <em>South China Morning Post</em> on what a US ban on Chinese AI models would cost American businesses.'
+  link: "https://www.scmp.com/tech/tech-trends/article/3362583/potential-us-ban-chinese-ai-models-could-cost-american-businesses-us12b-year-report"
+
+- date: "2026-07"
+  text: 'Quoted in the <em>South China Morning Post</em> on businesses shifting to low-cost open-weight models.'
+  link: "https://www.scmp.com/tech/tech-trends/article/3360659/us-ai-costs-soar-global-businesses-pivot-chinas-low-cost-open-weight-models"
+
+- date: "2026-07"
+  text: 'Data-center research featured in <em>Fortune</em>.'
+  link: "https://fortune.com/2026/07/14/data-centers-urban-rural-jobs-study/"
+
+- date: "2026-07"
+  text: 'Named a Senior Fellow of the Microsoft AI Economy Institute.'
+  link: "https://www.microsoft.com/en-us/research/articles/announcing-the-ai-economy-institutes-third-cohort-of-senior-fellows/"
+
+- date: "2026-04"
+  text: 'Quoted in the <em>South China Morning Post</em> on China''s open-source AI strategy.'
+  link: "https://www.scmp.com/tech/tech-trends/article/3350340/chinas-ai-firms-scaled-open-source-models-next-phase-may-be-different"
+
+- date: "2025-12"
+  text: 'Open-models research cited in a <em>Financial Times</em> op-ed, "Open source could pop the AI bubble, and soon."'
+  link: "https://www.ft.com/content/353adf48-a5d6-4ea0-b5d7-9a94b141213a"
+
+- date: "2025-08"
+  text: 'Won the Academy of Management TIM Division Best Dissertation Award.'
+  link: "https://research.gatech.edu/daniel-yue-wins-best-dissertation-award-academy-management"
+
+- date: "2025-06"
+  text: '"Igniting Innovation" named a top-3 finalist for the AOM TIM Division Best Paper Award.'
+  link: "https://tim.aom.org/news/newsletter-june-2025"

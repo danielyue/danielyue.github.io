@@ -1,5 +1,17 @@
 # Worklog
 
+## 2026-10-09 -- bio press sentence, trimmed press chips, News section
+
+- Bio: press outlets moved out of the awards clause into their own unlinked
+  sentence in the same paragraph (FT, NPR's Morning Edition, CNN, Fortune,
+  SCMP).
+- Press chips: CNN Business removed from the data-center paper (the piece was
+  about AI and inflation, not the paper); NPR relabeled "NPR Morning Edition";
+  MIT Sloan removed from the open-models paper.
+- New News section at the bottom of the page, driven by `data/news.yml`
+  (personal updates and coverage, newest first); `scripts/build.py` adds it to
+  `content.json`. Previewed locally before pushing.
+
 ## 2026-10-09 -- data-center press: CNN Business, NPR, AJC
 
 - Added CNN Business (9/28, quotes Daniel), NPR (9/22, quotes Daniel) and the
