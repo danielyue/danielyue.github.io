@@ -366,11 +366,16 @@
   }
   .paper .marg .review{
     display: block;
-    margin-top: 2px;
+    margin-top: 8px;
     color: var(--mute);
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+  .paper .marg .review .journal{
+    display: block;
+    margin-top: 3px;
+    color: var(--ink);
   }
   .paper .marg .venue{
     display: inline-block;
@@ -923,8 +928,9 @@ DATA.papers.forEach((p, i) => {
     // The venue badge alone signals publication; fall back to the label only when no venue is given.
     margBits += p.venue ? `<span class="venue">${p.venue}</span>` : `<span class="wp">Published</span>`;
   } else {
-    margBits += `<span class="wp">Working Paper</span>`;
-    if (p.review) margBits += `<span class="review">${p.review}</span>`;
+    // A review status replaces the "Working Paper" label rather than sitting under it.
+    // The narrow margin column puts the journal after " · " on its own darker line and keeps "&" with the next word.
+    margBits += p.review ? `<span class="review">${p.review.replace(/ & /g, " &\u00a0").replace(/ · (.+)$/, '<span class="journal">$1</span>')}</span>` : `<span class="wp">Working Paper</span>`;
   }
   const article = document.createElement("article");
   article.className = "paper";
