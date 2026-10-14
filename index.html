@@ -734,7 +734,7 @@ const DATA = {
   //
   // Status model:
   //   status: "Working Paper" (default) — renders plain gray "Working Paper"
-  //   status: "Published"                — renders plain gray "Published" + venue badge
+  //   status: "Published"                — renders the venue badge only (plain "Published" if no venue)
   //   review: "Reject & Resubmit · PNAS" / "Major Revision · Management Science" (optional gray text,
   //           only meaningful when status is "Working Paper")
   //   venue:  "AIES 2022" / "Management Science" (filled terracotta box;
@@ -920,8 +920,8 @@ DATA.papers.forEach((p, i) => {
   const isPub = /published/i.test(p.status || "");
   let margBits = "";
   if (isPub){
-    margBits += `<span class="wp">Published</span>`;
-    if (p.venue) margBits += `<span class="venue">${p.venue}</span>`;
+    // The venue badge alone signals publication; fall back to the label only when no venue is given.
+    margBits += p.venue ? `<span class="venue">${p.venue}</span>` : `<span class="wp">Published</span>`;
   } else {
     margBits += `<span class="wp">Working Paper</span>`;
     if (p.review) margBits += `<span class="review">${p.review}</span>`;

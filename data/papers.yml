@@ -5,7 +5,7 @@
 #   authors:  list of strings, required ("Daniel Yue" is auto-highlighted)
 #   status:   "Working Paper" (default) or "Published"
 #   review:   optional string for R&R state, e.g. "Reject & Resubmit · PNAS"
-#   venue:    optional string for published venue, e.g. "AIES 2022"
+#   venue:    optional string for published venue, e.g. "AIES 2022" (shown alone; no "Published" label)
 #   tldr:     1-2 sentence plain-English summary (HTML ok), required
 #   abstract: full abstract text (optional)
 #   links:    list of {label, href}; first entry becomes the title link
@@ -49,7 +49,7 @@
 - title: "The Latent Role of Open Models in the AI Economy"
   authors: ["Frank Nagle", "Daniel Yue"]
   status: "Working Paper"
-  review: "Reject & Resubmit · PNAS"
+  review: "2nd Revise & Resubmit · PNAS"
   tldr: >-
     Closed LLMs capture ~80% of monthly tokens despite charging ~6× the price
     of open alternatives that perform comparably. Moving demand to dominated
@@ -92,7 +92,7 @@
 - title: "I, Google: Estimating the Impact of Corporate Involvement on AI Research"
   authors: ["Daniel Yue"]
   status: "Working Paper"
-  review: "Major Revision · Management Science"
+  review: "2nd Revise & Resubmit · Management Science"
   tldr: >-
     Corporate involvement in AI research raises field-weighted citations by
     up to +44%. Firms' resources (data, compute, talent) outweigh the costs
