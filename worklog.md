@@ -1,5 +1,15 @@
 # Worklog
 
+## 2026-10-14 -- paper status labels after the PNAS R&R
+
+- Open-models paper now "2nd Revise & Resubmit / PNAS"; I, Google now "2nd Revise & Resubmit / Management
+  Science"; PyTorch paper now "Revise & Resubmit / Organization Science" (`data/papers.yml`).
+- `index.html` rendering: a review status replaces the "Working Paper" label; the journal sits on its own darker
+  line (`.review .journal`) and "&" stays with the next word, so nothing wraps alone in the narrow margin column.
+  Published papers show only the venue badge (plain "Published" only when no venue is given).
+- Checked in a local preview before each push; all three deploys succeeded.
+- Commits: `743316b`, `ba1f0ad`, plus the Org Sci label commit.
+
 ## 2026-10-09 -- bio press sentence, trimmed press chips, News section
 
 - Bio: press outlets moved out of the awards clause into their own unlinked
@@ -88,4 +98,4 @@
 - Published at <https://danielyue.github.io/> via the personal Pages convention
   (repo name matches username → served from the Actions artifact).
 
-Last updated: 2026-07-16
+Last updated: 2026-10-14
