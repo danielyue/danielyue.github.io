@@ -8,7 +8,7 @@
   line (`.review .journal`) and "&" stays with the next word, so nothing wraps alone in the narrow margin column.
   Published papers show only the venue badge (plain "Published" only when no venue is given).
 - Checked in a local preview before each push; all three deploys succeeded.
-- Commits: `743316b`, `ba1f0ad`, plus the Org Sci label commit.
+- Commits: `743316b` (labels), `93bbaf3` (layout), `6f6ee7d` (Org Sci label).
 
 ## 2026-10-09 -- bio press sentence, trimmed press chips, News section
 
